@@ -64,7 +64,7 @@ function Chart({ coinId, theme }:ChartProps) {
                     categories: data?.map(price => price.time_close),
                     labels:{
                         style:{
-                            colors:"#fbc531",
+                            colors: theme === "lightTheme" ? "#fbc531" : "#f5f6fa",
                         }
                     }
                 }

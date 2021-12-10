@@ -7,7 +7,6 @@ import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchPriceInfo } from "./api";
 
-
 const Title = styled.h1`
      color: ${props => props.theme.textColor};
      font-size: 48px;
@@ -24,8 +23,21 @@ const Container = styled.div`
 const Header = styled.header`
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+`;
+
+const Button = styled.button`
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height:30px;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:none;
+  color: ${props=> props.theme.textColor};
+  cursor: pointer;
 `;
 
 const Loader = styled.span`
@@ -141,15 +153,21 @@ interface PriceData {
     };
 }
 
-function Coin() {
+interface ICoinProps {
+  toggleTheme: () => void;
+  theme: string;
+}
+
+function Coin({ toggleTheme, theme }:ICoinProps) {
+
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RotueState>();
     const priceMatch = useRouteMatch("/:coinId/price");
     const chartMatch = useRouteMatch("/:coinId/chart");
     const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(
         ["info", coinId], () => fetchCoinInfo(coinId),);
-    const {isLoading: tickersLoading, data: tickersData} = useQuery<PriceData>([
-        "tickers", coinId], () => fetchPriceInfo(coinId),
+    const {isLoading: tickersLoading, data: tickersData} = useQuery<PriceData>(
+      ["tickers", coinId], () => fetchPriceInfo(coinId),
         {
             refetchInterval: 5000,
         }
@@ -179,9 +197,17 @@ function Coin() {
             <title>CrpytoTracker | {state?.name ? state.name : infoLoading ? "Loading..." : infoData?.name} </title>
         </Helmet>
         <Header>
+            <Link to={"/"}>
+              <Button>
+                  <i className="fas fa-arrow-left"></i> 
+                </Button>
+            </Link>
             <Title>
             {state?.name ? state.name : infoLoading ? "Loading..." : infoData?.name}
             </Title>
+            <Button onClick={toggleTheme}>
+              { theme === "lightTheme" ? ( <i className="fas fa-moon"></i> ) : ( <i className="fas fa-sun"></i> ) }
+            </Button>
         </Header>
         { loading ? ( <Loader>Loading...</Loader>) : 
 
@@ -226,11 +252,11 @@ function Coin() {
               </Tabs>
               
               <Switch>
-                <Route path={`/:coinId/price`}>
-                    <Price />
+                <Route path={`/:coinId/price`} >
+                    <Price tickersData={ tickersData?.quotes.USD } />
                 </Route>
                 <Route path={`/:coinId/chart`}>
-                    <Chart coinId={ coinId }/>
+                    <Chart coinId={ coinId } theme={theme} />
                 </Route>
               </Switch>
             </>

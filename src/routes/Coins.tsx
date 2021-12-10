@@ -21,7 +21,7 @@ const Container = styled.div`
 const Header = styled.header`
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 `;
 
@@ -60,6 +60,19 @@ const Img = styled.img`
     margin-right: 15px;
 `;
 
+const Button = styled.button`
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height:30px;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:none;
+  color: ${props=> props.theme.textColor};
+  cursor: pointer;
+`;
+
 interface ICoin {
     "id": string,
     "name": string,
@@ -69,7 +82,15 @@ interface ICoin {
     "is_active": boolean,
     "type": string
 }
-function Coins() {
+
+interface ICoinsProps {
+    toggleTheme: () => void;
+    theme: string;
+  }
+
+  
+
+function Coins({ toggleTheme, theme }:ICoinsProps) {
     const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
     /* const [coins, setCoins] = useState<CoinInterface[]>([]);
     const [loading, setLoading] = useState(true);
@@ -85,9 +106,15 @@ function Coins() {
             <title>CrpytoTracker | Coins </title>
         </Helmet>
         <Header>
+            <div>
+            </div>
+
             <Title>
                 Coins
             </Title>
+            <Button onClick={toggleTheme}>
+              { theme === "lightTheme" ? ( <i className="fas fa-moon"></i> ) : ( <i className="fas fa-sun"></i> ) }
+            </Button>
         </Header>
         { isLoading ? ( <Loader >Loading...</Loader>) : 
             (<CoinsList>

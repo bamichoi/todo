@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 import Router from  "./Router"
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme";
+import { useState } from "react";
+import styled from "styled-components";
+
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -67,13 +72,32 @@ a {
 }
 `;
 
+const Button = styled.button`
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height:30px;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:none;
+  color: ${props=> props.theme.textColor};
+  cursor: pointer;
+`;
+
 
 function App() {
+  const [theme, setTheme] = useState("lightTheme");
+  const toggleTheme = () => {
+    theme === "lightTheme" ? setTheme("darkTheme") : setTheme("lightTheme");
+  };
   return ( 
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={theme === "lightTheme" ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <Router toggleTheme={toggleTheme} theme={theme}/>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </ThemeProvider>
     </>
   )
 }

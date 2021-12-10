@@ -14,51 +14,50 @@ interface IHistorical  {
 }
 interface ChartProps {
     coinId:string;
+    theme: string;
 }
+
+
 // 포매터ㅓㅓㅓㅓㅓ
-function Chart({ coinId }:ChartProps) {
+function Chart({ coinId, theme }:ChartProps) {
     const {isLoading, data} = useQuery<IHistorical[]>(
         ["ohlcv", coinId], () => fetchCoinHistory(coinId));
     return <div>{ isLoading ? ( "Loading Chart..." 
     ) : ( 
     <ApexChart 
-        type="line"
+        type="candlestick"
         series={[
             {
                 name: "price",
-                data: data?.map(price => price.close),
+                data: data?.map(price =>({
+                    x: price.time_close,
+                    y: [price.open, price.high, price.low, price.close]
+                }))
             }
-
         ]}
         options={{
                 theme:{
-                    mode: "light"
+                    mode: theme === "lightTheme" ? "light" : "dark" 
                 },
                 chart:
                     {
+                    type: 'candlestick',
                     height: 500,
                     width: 500,
                     toolbar:{
-                        show: false
+                        show: true
                     }
                 },
                 stroke: {
-                    curve:"smooth",
-                    width:3,
+                    width:1,
                 },
-                fill: {
-                    type: "gradient",
-                    gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
-                  },
-                  colors: ["#0fbcf9"],
                 tooltip: {
                     y: {
-                        formatter: (value) => `$ ${value.toFixed(2)}`
+                        formatter: (value) => `$ ${value.toFixed(2)}` 
                     }
                 },
                 yaxis:{
-                    show:false
-                    
+                    show:false,         
                 },
                 xaxis:{
                     type:"datetime",

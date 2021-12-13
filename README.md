@@ -1,10 +1,4 @@
-# router
+# To Do React.js
 
-# /
-all coins
+To Do app for React.js Challenge of Nomad coder using React.js, TS and Recoil
 
-# /:id  
-coin id, coin detail
-
-## Nested Router
-ex) /btc/info, /btc/chart

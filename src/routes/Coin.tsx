@@ -6,6 +6,8 @@ import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchPriceInfo } from "./api";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { isDarkAtom } from "atoms";
 
 const Title = styled.h1`
      color: ${props => props.theme.textColor};
@@ -154,12 +156,13 @@ interface PriceData {
 }
 
 interface ICoinProps {
-  toggleTheme: () => void;
-  theme: string;
+ 
 }
 
-function Coin({ toggleTheme, theme }:ICoinProps) {
-
+function Coin({}:ICoinProps) {
+    const setDarkAtom = useSetRecoilState(isDarkAtom)
+    const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+    const isDark = useRecoilValue(isDarkAtom)
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RotueState>();
     const priceMatch = useRouteMatch("/:coinId/price");
@@ -205,8 +208,8 @@ function Coin({ toggleTheme, theme }:ICoinProps) {
             <Title>
             {state?.name ? state.name : infoLoading ? "Loading..." : infoData?.name}
             </Title>
-            <Button onClick={toggleTheme}>
-              { theme === "lightTheme" ? ( <i className="fas fa-moon"></i> ) : ( <i className="fas fa-sun"></i> ) }
+            <Button onClick={toggleDarkAtom}>
+              { isDark ? ( <i className="fas fa-sun"></i> ) : ( <i className="fas fa-moon"></i> ) }
             </Button>
         </Header>
         { loading ? ( <Loader>Loading...</Loader>) : 
@@ -256,7 +259,7 @@ function Coin({ toggleTheme, theme }:ICoinProps) {
                     <Price tickersData={ tickersData?.quotes.USD } />
                 </Route>
                 <Route path={`/:coinId/chart`}>
-                    <Chart coinId={ coinId } theme={theme} />
+                    <Chart coinId={ coinId } />
                 </Route>
               </Switch>
             </>

@@ -3,19 +3,18 @@ import Coins from "./routes/Coins"
 import Coin from "./routes/Coin"
 
 interface IRouterProps {
-    toggleTheme: () => void;
-    theme: string;
+
 }
 
 
-function Router({ toggleTheme, theme }:IRouterProps) {
-    return <BrowserRouter>
+function Router({}:IRouterProps) {
+    return <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route path="/:coinId">
-                <Coin toggleTheme={toggleTheme} theme={theme}/>
+                <Coin />
             </Route>
             <Route path="/">
-                <Coins toggleTheme={toggleTheme} theme={theme}/>
+                <Coins />
             </Route>
         </Switch>
     </BrowserRouter>

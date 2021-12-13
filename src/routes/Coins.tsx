@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { isDarkAtom } from "atoms";
 
 const Title = styled.h1`
      color: ${props => props.theme.textColor};
@@ -84,13 +86,14 @@ interface ICoin {
 }
 
 interface ICoinsProps {
-    toggleTheme: () => void;
-    theme: string;
+
   }
 
   
 
-function Coins({ toggleTheme, theme }:ICoinsProps) {
+function Coins({}:ICoinsProps) {
+    const setterFn = useSetRecoilState(isDarkAtom)
+    const isDark = useRecoilValue(isDarkAtom)
     const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
     /* const [coins, setCoins] = useState<CoinInterface[]>([]);
     const [loading, setLoading] = useState(true);
@@ -112,8 +115,8 @@ function Coins({ toggleTheme, theme }:ICoinsProps) {
             <Title>
                 Coins
             </Title>
-            <Button onClick={toggleTheme}>
-              { theme === "lightTheme" ? ( <i className="fas fa-moon"></i> ) : ( <i className="fas fa-sun"></i> ) }
+            <Button onClick={() => setterFn(prev => !prev )}>
+              { isDark ? ( <i className="fas fa-sun"></i> ) : ( <i className="fas fa-moon"></i> ) }
             </Button>
         </Header>
         { isLoading ? ( <Loader >Loading...</Loader>) : 

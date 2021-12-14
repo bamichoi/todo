@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
-import ToDoList from "ToDoList";
+import ToDoList from "Components/ToDoList";
 
 
 
@@ -69,18 +69,6 @@ a {
 }
 `;
 
-const Button = styled.button`
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 30px;
-  height:30px;
-  border-radius:15px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border:none;
-  color: ${props=> props.theme.textColor};
-  cursor: pointer;
-`;
 
 
 function App() {

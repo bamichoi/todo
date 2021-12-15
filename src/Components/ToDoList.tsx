@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     flex-direction:column;
     align-items: center; 
     height:100%;
-    min-height:96vh;
 `;
 
 const Title = styled.div`
@@ -55,8 +54,13 @@ const CategoryTitle = styled.h1`
 
 `;
 
-const Footer = styled.footer`
+const Footer = styled.div`
     text-align : center;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background-color: ${props => props.theme.bgColor};
+    padding-bottom:5px;
 `;
 
 function ToDoList() {

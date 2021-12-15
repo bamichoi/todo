@@ -12,13 +12,25 @@ export interface ITodo {
     category: Categories;
 }
 
+export interface ICustomCategory {
+    title: string;
+    id : number;
+}
+
+export const customCategoryState = atom<ICustomCategory[]>({
+    key:"customCategory",
+    default: []
+})
+
 export const categoryState = atom<Categories>({
     key:"category",
     default: Categories.TO_DO
 })
+
+
 export const toDoState = atom<ITodo[]>({
     key:"toDo",
-    default: []
+    default: JSON.parse(localStorage.getItem("TODOS") || "[]" )
 })
 
 export const toDoSelector = selector({

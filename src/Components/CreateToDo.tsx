@@ -54,7 +54,7 @@ function CreateToDo() {
                     {errors?.toDo?.message}
                 </span>
                 <input {...register("toDo", { 
-                    required : "To do is required",
+                    required : true,
                     })} 
                     placeholder="새로운 할 일을 적어주세요" />
                 <button>추가</button>

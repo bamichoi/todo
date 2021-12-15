@@ -60,14 +60,15 @@ table {
  
 }
 
-html {
-  height:100%;
-}
+
 
 body {
   background-color: ${props => props.theme.bgColor};
   color: ${props => props.theme.textColor};
   font-family: 'Gaegu', cursive; 
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 

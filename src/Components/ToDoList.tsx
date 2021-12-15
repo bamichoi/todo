@@ -54,13 +54,17 @@ const CategoryTitle = styled.h1`
 
 `;
 
+const Ul = styled.ul`
+    height: 100%;
+    margin-bottom: 50px;
+`;
 const Footer = styled.div`
     text-align : center;
     position:fixed;
     bottom:0;
     width:100%;
+    padding:5px;
     background-color: ${props => props.theme.bgColor};
-    padding-bottom:5px;
 `;
 
 function ToDoList() {
@@ -93,11 +97,11 @@ function ToDoList() {
             </CategoryDiv>
             <CreateToDo />
             <CategoryTitle>{category}</CategoryTitle>
-            <ul>
+            <Ul>
                 {toDos.map(toDo => (
                     <ToDo key={toDo.id} {...toDo}/>
                     ))}
-            </ul>
+            </Ul>
     </Wrapper>
     <Footer>
     &copy; 2021 To Do Arancia All rights reserved.

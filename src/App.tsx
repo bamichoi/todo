@@ -59,11 +59,14 @@ table {
   box-sizing: border-box;
  
 }
+
+
 body {
   background-color: ${props => props.theme.bgColor};
   color: ${props => props.theme.textColor};
-  font-family: 'Gaegu', cursive;
+  font-family: 'Gaegu', cursive; 
 }
+
 a {
   text-decoration: none;
   color: inherit;

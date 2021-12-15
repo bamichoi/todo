@@ -57,7 +57,7 @@ function ToDo({ text, category, id }:ITodo) {
                 newToDos.splice(toDoIndex, 1, newTodo); 
             }
             else {
-                if (window.confirm("This todo would be deleted, ok?")) {
+                if (window.confirm("정말 이 항목을 삭제할거에요?")) {
                     newToDos.splice(toDoIndex, 1);
                 }
             }

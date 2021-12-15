@@ -10,6 +10,8 @@ const Wrapper = styled.div`
     display:flex;
     flex-direction:column;
     align-items: center; 
+    height:100%;
+    min-height:96vh;
 `;
 
 const Title = styled.div`
@@ -54,8 +56,7 @@ const CategoryTitle = styled.h1`
 `;
 
 const Footer = styled.footer`
-    position:fixed;
-    bottom: 20px;
+    text-align : center;
 `;
 
 function ToDoList() {
@@ -70,7 +71,9 @@ function ToDoList() {
     useEffect(() => {
         localStorage.setItem("TODOS", JSON.stringify(allToDos))
     }, [allToDos])
-    return <Wrapper>
+    return (
+        <>
+        <Wrapper>
             <Title>오늘의 할 일🍊</Title>
             <CategoryDiv>
                 <div>분류:&nbsp;</div>
@@ -91,10 +94,12 @@ function ToDoList() {
                     <ToDo key={toDo.id} {...toDo}/>
                     ))}
             </ul>
-            <Footer>
-                &copy; 2021 To Do Arancia All rights reserved.
-            </Footer>
     </Wrapper>
+    <Footer>
+    &copy; 2021 To Do Arancia All rights reserved.
+    </Footer>
+    </> 
+    )  
 }
 
 export default ToDoList

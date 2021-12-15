@@ -4,6 +4,59 @@ import CreateToDo from "./CreateToDo";
 import { selector, useRecoilState, useRecoilValue } from "recoil";
 import ToDo from "./ToDo";
 import CreateCategory from "./CreateCategory";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items: center; 
+`;
+
+const Title = styled.div`
+    font-size : 30px;
+    margin-top: 30px;
+    margin-bottom :30px;
+    font-weight:500;
+    
+`;
+
+const CategoryDiv = styled.div`
+    display:flex;
+    justify-content:space-between;
+    align-self: center;
+    margin-bottom : 30px;
+    
+    div {
+        font-size:20px;
+        height:30px;
+        display:flex;
+        align-items:center;
+    }
+    select {
+        height: 30px;
+        width: 70px;
+        font-family: 'Gaegu', cursive;
+        border:none;
+        border-radius:5px;
+        margin-right: 10px;
+        option {
+         text-align:center;
+        }
+       
+
+    }
+`;
+
+const CategoryTitle = styled.h1`
+    margin-bottom: 30px;
+    font-size:20px;
+
+`;
+
+const Footer = styled.footer`
+    position:fixed;
+    bottom: 20px;
+`;
 
 function ToDoList() {
     const allToDos = useRecoilValue(toDoState)
@@ -17,25 +70,31 @@ function ToDoList() {
     useEffect(() => {
         localStorage.setItem("TODOS", JSON.stringify(allToDos))
     }, [allToDos])
-    return <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-            <h1>To Dos</h1>
-            <hr />
-            <select value={category} onInput={onInput}>
-                <option value={Categories.TO_DO}>To do</option>
-                <option value={Categories.DOING}>Doing</option>
-                <option value={Categories.DONE}>Done</option>
-                {customCategories.map(category => (
-                    <option key={category.id} value={category.title}>{category.title}</option>
-                ))}
-            </select>
-            <CreateCategory />
+    return <Wrapper>
+            <Title>오늘의 할 일🍊</Title>
+            <CategoryDiv>
+                <div>분류:&nbsp;</div>
+                <select value={category} onInput={onInput}>
+                    <option value={Categories.TO_DO}>할 일</option>
+                    <option value={Categories.DOING}>진행 중</option>
+                    <option value={Categories.DONE}>끝낸 일</option>
+                    {customCategories.map(category => (
+                        <option key={category.id} value={category.title}>{category.title}</option>
+                    ))}
+                </select>
+                <CreateCategory />
+            </CategoryDiv>
             <CreateToDo />
+            <CategoryTitle>{category}</CategoryTitle>
             <ul>
                 {toDos.map(toDo => (
                     <ToDo key={toDo.id} {...toDo}/>
                     ))}
             </ul>
-    </div>
+            <Footer>
+                &copy; 2021 To Do Arancia All rights reserved.
+            </Footer>
+    </Wrapper>
 }
 
 export default ToDoList

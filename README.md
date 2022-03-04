@@ -15,7 +15,7 @@ Frontend : React.js, TypeScript
 December 8, 2021 ~ December 15, 2021  
   
 
-## 📝 개발 후기 Developer Review
+## 📝 개발 후기 Development Reviews
 
 
 ### 아이디어 Idea

@@ -20,7 +20,7 @@ December 8, 2021 ~ December 15, 2021
 
 ### 아이디어 Idea
 
-- 노마드 코더 리액트 챌린지의 과제 중 하나였다. Recoil을 이용해서 진행 상태별로 목록을 나눈 toDo 앱을 만드는 거였는데 뭔가 엄청 귀여운 ToDo를 만들고 싶어졌다.
+- 노마드 코더 리액트 챌린지의 과제 중 하나였다. Recoil을 이용해서 진행 상태별로 목록을 나눈 toDo 앱을 만드는 거였는데 뭔가 엄청 귀여운 ToDo를 만들고 싶었다ㅋㅋ
 
 
 ### 개발 과정에서의 문제 Problems & solution in development

@@ -4,8 +4,8 @@ React와 Recoil을 이용한 간단하고 귀여운 ToDo App🍊
 So cute ToDo app usig React and Recoil
 
 https://bamichoi.github.io/todo/
-
-    
+&nbsp;
+&nbsp;    
 ## 💻개발 언어 및 환경 Languages
 
 Frontend : React.js, TypeScript

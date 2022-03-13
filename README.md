@@ -4,16 +4,19 @@ React와 Recoil을 이용한 간단하고 귀여운 ToDo App🍊
 So cute ToDo app usig React and Recoil
 
 https://bamichoi.github.io/todo/
-  
+
+    
 ## 💻개발 언어 및 환경 Languages
 
 Frontend : React.js, TypeScript
-  
+
+    
 ## ⏱개발 기간 Development period
   
 2021년 12월 8일 ~ 2021년 12월 15일 
 December 8, 2021 ~ December 15, 2021  
-     
+
+       
 ## 📝 개발 후기 Development Reviews
 
 ### 아이디어 Idea
@@ -22,6 +25,7 @@ December 8, 2021 ~ December 15, 2021
 
 - 노마드 코더 리액트 챌린지의 과제 중 하나였습니다. Recoil을 이용해서 진행 상태별로 목록을 나눈 toDo 앱을 만드는 것이었는데 뭔가 엄청나게 귀여운 ToDo를 만들고 싶어졌습니다.
   
+      
 ### 문제 Problems & solution
 
 ---
@@ -32,6 +36,7 @@ December 8, 2021 ~ December 15, 2021
     
 - 모자란 감각으로 나름대로 디자인에 많은 힘을 실었는데 엄마는 글씨가 잘 안보인다며 별로라고 하셨습니다..
   
+    
 ### 이 프로젝트를 통해 배운 것 So What I learn
 
 ---
